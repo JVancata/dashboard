@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <script src="node_modules/socket.io-client/dist/socket.io.js"></script>
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+</head>
+
+<body class="bg-danger">
+    <div class="container">
+        <div class="row py-5 bg-white">
+            <div class="col-6 row no-gutters pb-5">
+                <h1 class="col-12">Game control panel:</h1>
+                <div class="col-3">
+                    <button class="btn btn-warning" id="initButton">Init system</button>
+                </div>
+                <div class="col-3">
+                    <button class="btn btn-success" id="startButton">Start game</button>
+                </div>
+                <div class="col-3">
+                    <button class="btn btn-danger" id="endGameButton">End game</button>
+                </div>
+                <h1 class="col-12 pt-5">Server responses:</h1>
+                <table class="table" id="serverResponse">
+                    <tr>
+                        <th>Time</th>
+                        <th>Response</th>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-6 row no-gutters pb-5">
+                <h1 class="col-12">Active players:</h1>
+                <table class="table">
+                    <tr>
+                        <th>Name</th>
+                        <th>Nation</th>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-12">
+                <h1>Auth server password:</h1>
+                <input type="password" name="password" id="passwordInput">
+                <button class="btn btn-success" id="passwordButton">Save and refresh</button>
+            </div>
+        </div>
+    </div>
+    <script src="client.js"></script>
+</body>
+
+</html>
