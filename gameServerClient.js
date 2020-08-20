@@ -25,6 +25,11 @@ socket.on("gameEnd", data => {
     socket.emit("serverStatus", "Game ended");
 });
 
+socket.on("gameTp", data => {
+    console.log("Got request for game tp");
+    socket.emit("serverStatus", "Players teleported");
+});
+
 socket.on("gameEnd", data => {
     // End the game
 });

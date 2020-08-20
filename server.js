@@ -44,6 +44,11 @@ io.on('connect', socket => {
         socket.to("game").emit("gameEnd");
     });
 
+    socket.on("tp", data => {
+        if (!authorized[socket.id]) return;
+        socket.to("game").emit("gameTp");
+    });
+
     /* DC */
     socket.on('disconnect', data => {
         if (!authorized[socket.id]) return;

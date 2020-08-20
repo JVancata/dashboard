@@ -34,6 +34,13 @@ endGameButton.addEventListener("click", () => {
     socket.emit("end", "Ending");
 });
 
+/* TP players */
+const 
+tpButton = document.querySelector("#tpButton");
+tpButton.addEventListener("click", () => {
+    socket.emit("tp", "Teleporting");
+});
+
 const passwordButton = document.querySelector("#passwordButton");
 const passwordInput = document.querySelector("#passwordInput");
 passwordButton.addEventListener("click", () => {
