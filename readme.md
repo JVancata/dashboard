@@ -1,0 +1,1 @@
+Extremely simple dashboard for administration of the game.

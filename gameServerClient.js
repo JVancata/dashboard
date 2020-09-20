@@ -1,8 +1,11 @@
+// Example of game server client
+require('dotenv').config()
+const { port, password, serverUrl } = process.env;
+
 const io = require('socket.io-client');
 
-const socket = io('http://localhost:3005');
+const socket = io(`${serverUrl}:${port}`);
 
-const password = "123";
 socket.on("requestAuthorization", data => {
     console.log("Emitting authorization");
     socket.emit("authorization", password);

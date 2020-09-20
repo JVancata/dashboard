@@ -1,7 +1,9 @@
-const options = { secure: true };
-var io = require('socket.io')(3005, options);
+require('dotenv').config()
 
-const password = "123";
+const { port, password } = process.env;
+
+var io = require('socket.io')(port);
+
 const authorized = {};
 
 io.on('connect', socket => {
@@ -47,6 +49,11 @@ io.on('connect', socket => {
     socket.on("tp", data => {
         if (!authorized[socket.id]) return;
         socket.to("game").emit("gameTp");
+    });
+
+    socket.on("activeCharacters", data => {
+        if (!authorized[socket.id]) return;
+        socket.to("game").emit("activeCharacters", data);
     });
 
     /* DC */

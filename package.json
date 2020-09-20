@@ -9,6 +9,7 @@
   "author": "",
   "dependencies": {
     "bootstrap": "^4.5.2",
+    "dotenv": "^8.2.0",
     "socket.io": "^2.3.0"
   }
 }

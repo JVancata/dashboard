@@ -1,4 +1,4 @@
-const socket = io('http://localhost:3005');
+const socket = io('http://192.168.1.226:3005');
 const password = localStorage.getItem("password");
 
 socket.on("requestAuthorization", data => {
@@ -6,13 +6,18 @@ socket.on("requestAuthorization", data => {
     socket.emit("authorization", password);
 });
 
+const getCurrentTime = () => {
+    const now = new Date();
+    return `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}:${String(now.getSeconds()).padStart(2, '0')}`;
+}
+
 const serverResponseTable = document.querySelector("#serverResponse");
 socket.on("serverStatus", data => {
     const row = serverResponseTable.insertRow(1);
     const dateCell = row.insertCell(0);
     const statusCell = row.insertCell(1);
 
-    dateCell.innerHTML = "Date";
+    dateCell.innerHTML = getCurrentTime();
     statusCell.innerHTML = data;
 });
 
@@ -35,11 +40,25 @@ endGameButton.addEventListener("click", () => {
 });
 
 /* TP players */
-const 
-tpButton = document.querySelector("#tpButton");
+const tpButton = document.querySelector("#tpButton");
 tpButton.addEventListener("click", () => {
     socket.emit("tp", "Teleporting");
 });
+
+
+/* Active characters */
+socket.on('activeCharacters', data => {
+    const activePlayersTable = document.querySelector("#activePlayers");
+    data.forEach(player => {
+        const row = activePlayersTable.insertRow(1);
+        const nameCell = row.insertCell(0);
+        const nationCell = row.insertCell(1);
+
+        nameCell.innerHTML = player.charName;
+        nationCell.innerHTML = player.nation;
+    });
+});
+
 
 const passwordButton = document.querySelector("#passwordButton");
 const passwordInput = document.querySelector("#passwordInput");
